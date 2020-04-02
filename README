@@ -1,0 +1,19 @@
+Input file generator for Chad Landis Phase Field code:
+
+Inout file: 
+1. dbcs:                 boundary condition of fundamental degree of freedom
+                         dbcsgenerator.py
+
+
+2. fbcs (not necessary): external force boundary codition. 
+                         displacement -> force
+                         electro static potential -> charge
+                         polarization -> microforce
+
+
+3. elements:             8 nodeal indexes in one cube elements
+                         elementsgen.py
+
+
+4. nodes:                nodal index
+                         nodesgen.py
