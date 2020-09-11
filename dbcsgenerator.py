@@ -76,7 +76,7 @@ for i in range (0,nx):
 # left and right y plane potential, displacement, etc. Left is zero.
 for i in range (0,nx):
     for j in range (0,nz):
-        rightnodeindex = i*ny*nz+1+j*nx;
+        rightnodeindex = i*ny*nz+1+j*ny;
         leftnodeindex = rightnodeindex+ny-1;
         if flag[leftnodeindex-1][3] == 0:
             file.write('%i'%leftnodeindex);
@@ -89,7 +89,7 @@ for i in range (0,nx):
 
 for i in range (0,nx):
     for j in range (0,nz):
-        rightnodeindex = i*ny*nz+1+j*nx;
+        rightnodeindex = i*ny*nz+1+j*ny;
         leftnodeindex = rightnodeindex+ny-1;
         if flag[leftnodeindex-1][1] == 0:
             file.write('%i'%leftnodeindex);
@@ -100,9 +100,9 @@ for i in range (0,nx):
 
 '''
 # front and back x plane potential, displacement, etc. Back is zero.
-for i in range (0,ny):
-    for j in range (0,nz):
-        frontnodeindex = nz*i+1+j;
+for j in range (0,nz):
+    for i in range (0,ny):
+        frontnodeindex = ny*j+1+i;
         backnodeindex = frontnodeindex+ny*nz*(nx-1);
         if flag[backnodeindex-1][3] == 0:
             file.write('%i'%backnodeindex);
@@ -113,9 +113,9 @@ for i in range (0,ny):
             file.write('\t 4 \t 0.00\r\n');
             flag[frontnodeindex-1][3] = 1;
 
-for i in range (0,ny):
-    for j in range (0,nz):
-        frontnodeindex = nz*i+1+j;
+for j in range (0,nz):
+    for i in range (0,ny):
+        frontnodeindex = ny*j+1+i;
         backnodeindex = frontnodeindex+ny*nz*(nx-1);
         if flag[backnodeindex-1][0] == 0:
             file.write('%i'%backnodeindex);
@@ -343,7 +343,7 @@ for i in range (0,nx):
 # periodic boundary condition of left and right multipoint constraint. Left is master and right is slave.
 for i in range (0,nx):
     for j in range (0,nz):
-        rightnodeindex = i*ny*nz+1+j*nx;
+        rightnodeindex = i*ny*nz+1+j*ny;
         leftnodeindex = rightnodeindex+ny-1;
         if flag[rightnodeindex-1][4] == 0:
             file.write('1');
@@ -409,9 +409,9 @@ for i in range (0,nx):
             
 
 # periodic boundary condition of front and back multipoint constraint. Back is master and front is slave.
-for i in range (0,ny):
-    for j in range (0,nz):
-        frontnodeindex = nz*i+1+j;
+for j in range (0,nz):
+    for i in range (0,ny):
+        frontnodeindex = ny*j+1+i;
         backnodeindex = frontnodeindex+ny*nz*(nx-1);
         if flag[frontnodeindex-1][4] == 0:
             file.write('1');
