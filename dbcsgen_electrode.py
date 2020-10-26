@@ -155,6 +155,14 @@ for i in range (0,nx):
             file.write('\t 3 \t 1.00 \t 0.00\r\n');
             flag[rightnodeindex-1][2] = 1;
             flag[leftnodeindex-1][2] = 1;
+        if flag[rightnodeindex-1][3] == 0:
+            file.write('1');
+            file.write('\t %i'%rightnodeindex);
+            file.write('\t 4\r\n');
+            file.write('%i'%leftnodeindex);
+            file.write('\t 4 \t 1.00 \t 0.00\r\n');
+            flag[rightnodeindex-1][3] = 1;
+            flag[leftnodeindex-1][3] = 1;
 
 
 # In[8]:
@@ -229,14 +237,14 @@ for j in range (0,nz):
             file.write('\t 3 \t 1.00 \t 0.00\r\n');
             flag[frontnodeindex-1][2] = 1;
             flag[backnodeindex-1][2] = 1;
-        if flag[frontnodeindex-1][3] == 0:
-            file.write('1');
-            file.write('\t %i'%frontnodeindex);
-            file.write('\t 4\r\n');
-            file.write('%i'%backnodeindex);
-            file.write('\t 4 \t 1.00 \t 0.00\r\n');
-            flag[frontnodeindex-1][3] = 1;
-            flag[backnodeindex-1][3] = 1;
+#        if flag[frontnodeindex-1][3] == 0:
+#            file.write('1');
+#            file.write('\t %i'%frontnodeindex);
+#            file.write('\t 4\r\n');
+#            file.write('%i'%backnodeindex);
+#            file.write('\t 4 \t 1.00 \t 0.00\r\n');
+#            flag[frontnodeindex-1][3] = 1;
+#            flag[backnodeindex-1][3] = 1;
 
 '''
 center_node = 226;
