@@ -198,33 +198,8 @@ end
 left=1;          %left and right are the boundary of domain. It is a movable cursor.
 right=1;         %left and right are the boundary of domain. It is a movable cursor.
 tol_exy=0.05;
-exy_left_bound=[];   %array to store info of domain left boundary
-exy_right_bound=[];  %array to store info of domain right boundary
-for i=1:nx
-    if i==1
-          if abs(exy(i+1)-exy(i))<tol_exy
-             left=i;
-             exy_left_bound=[exy_left_bound left];
-             fprintf('left=%d;   ', left);
-          end
-    elseif i==nx
-          if abs(exy(i-1)-exy(i))<tol_exy 
-             right=i;
-             exy_right_bound=[exy_right_bound right];
-             fprintf('right=%d;\r\n', right);
-          end
-    else
-          if abs(exy(i-1)-exy(i))>tol_exy && abs(exy(i+1)-exy(i))<tol_exy 
-             left=i;
-             exy_left_bound=[exy_left_bound left];
-             fprintf('left=%d;   ', left);
-          elseif abs(exy(i+1)-exy(i))>tol_exy && abs(exy(i-1)-exy(i))<tol_exy
-             right=i;
-             exy_right_bound=[exy_right_bound right];
-             fprintf('right=%d;\r\n', right);
-          end
-    end
-end
+exy_left_bound=exx_left_bound;   %array to store info of domain left boundary
+exy_right_bound=exx_right_bound;  %array to store info of domain right boundary
 for i=1:numel(exy_left_bound)
     rectangle('Position',[exy_left_bound(i) mean(exy(exy_left_bound(i):exy_right_bound(i)))-std(exy(exy_left_bound(i):exy_right_bound(i))) exy_right_bound(i)-exy_left_bound(i) 2*std(exy(exy_left_bound(i):exy_right_bound(i)))],'EdgeColor','green', 'LineWidth',2);
 end
