@@ -35,7 +35,7 @@ for jjj=1:ny
        
        
        %%%% calculate average average strain and std in a small group with specific tolerance %%%%
-       tol=0.15;        %strain tolerance
+       tol=0.1;        %strain tolerance
        left=1;          %left and right are the boundary of domain. It is a movable cursor.
        right=1;         %left and right are the boundary of domain. It is a movable cursor.
        
@@ -166,11 +166,11 @@ for jjj=1:ny
        end
 
       
-       tolerance=0.2;
+       tolerance=0.1;
        for iii=1:numel(exx_left_bound)
-	       if mean(eyy(exx_left_bound(iii):exx_right_bound(iii)))<0 && ( abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(eyy(exx_left_bound(iii):exx_right_bound(iii))))/mean(eyy(exx_left_bound(iii):exx_right_bound(iii)))<tolerance || abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(eyy(exx_left_bound(iii):exx_right_bound(iii))))/mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))<tolerance )
+	       if mean(exy(exx_left_bound(iii):exx_right_bound(iii)))-8*std(exy(exx_left_bound(iii):exx_right_bound(iii)))<0 && mean(exy(exx_left_bound(iii):exx_right_bound(iii)))+8*std(exy(exx_left_bound(iii):exx_right_bound(iii)))>0 && mean(eyy(exx_left_bound(iii):exx_right_bound(iii)))<0 && ( abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(eyy(exx_left_bound(iii):exx_right_bound(iii))))/abs(mean(eyy(exx_left_bound(iii):exx_right_bound(iii))))<tolerance || abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(eyy(exx_left_bound(iii):exx_right_bound(iii))))/abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii))))<tolerance )
                    phase(exx_left_bound(iii):exx_right_bound(iii),jjj)=2;
-               elseif mean(exx(exx_left_bound(iii):exx_right_bound(iii)))<0 && ( abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(exx(exx_left_bound(iii):exx_right_bound(iii))))/mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))<tolerance || abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(exx(exx_left_bound(iii):exx_right_bound(iii))))/mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))<tolerance )
+               elseif mean(exy(exx_left_bound(iii):exx_right_bound(iii)))-8*std(exy(exx_left_bound(iii):exx_right_bound(iii)))<0 && mean(exy(exx_left_bound(iii):exx_right_bound(iii)))+8*std(exy(exx_left_bound(iii):exx_right_bound(iii)))>0 && mean(exx(exx_left_bound(iii):exx_right_bound(iii)))<0 && ( abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(exx(exx_left_bound(iii):exx_right_bound(iii))))/abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii))))<tolerance || abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii)))-mean(exx(exx_left_bound(iii):exx_right_bound(iii))))/abs(mean(ezz(exx_left_bound(iii):exx_right_bound(iii))))<tolerance )
                    phase(exx_left_bound(iii):exx_right_bound(iii),jjj)=1;
                end
        end
