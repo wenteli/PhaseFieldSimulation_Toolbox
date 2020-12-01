@@ -33,7 +33,7 @@ for i=1:nx
         nodes(j)=start_node+ny*nz*(i-1)+(j-1)*ny; 
     end
     px(i)=mean(polarization(nodes,1));
-    std_px(i)=std(strain(nodes,1));
+    std_px(i)=std(polarization(nodes,1));
     py(i)=mean(polarization(nodes,2));
     std_py(i)=std(polarization(nodes,2));
     pz(i)=mean(polarization(nodes,3));
