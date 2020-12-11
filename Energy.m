@@ -2,12 +2,6 @@ clear
 clc
 
 
-
-%%%%%%%%%%%%%%%%%%%Try to switch back to nomralized value%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
 a1 = -2.062e+7;
 a11 = -2.097e+8;
 a12 = 7.974e+8;
@@ -36,7 +30,7 @@ G0 = 51.0e-11;
 mesh = 1;
 l0 = 0.35*sqrt(G0*P0/elec0);
 
-%%%% we choose the path start from grid ID 10 and go along x direciton. %%%% 
+
 nx=20;
 ny=20;
 nz=4;
@@ -60,6 +54,10 @@ ezz = data(:,24);   %ezz
 px = data(:,1);   %Px
 py = data(:,2);   %Py
 pz = data(:,3);   %Pz
+
+elecx = data(:,9);   %Ex
+elecy = data(:,10);  %Ey
+elecz = data(:,11);  %Ez
 
 
 delecx = data(:,12);   %Dx
@@ -207,8 +205,8 @@ end
 
 
 %%%%%%%%   total energy start  %%%%%%%%%%%%%%%%%%%
-helec = ((delecx-px).^2+(delecy-py).^2+(delecz-pz).^2)/(2*k0);
-helec = helec*P0^2;
+helec = 0.5*k0*(elecx.^2+elecy.^2+elecz.^2)*elec0^2+(elecx.*px+elecy.*py+elecz.*pz)*P0*elec0;
+helec = -helec
 
 helas = 0.5*C11*((exx-exx0).^2+(eyy-eyy0).^2+(ezz-ezz0).^2)+C12*((exx-exx0).*(eyy-eyy0)+(exx-exx0).*(ezz-ezz0)+(ezz-ezz0).*(eyy-eyy0))+0.5*C44*((exy-exy0).^2+(eyx-eyx0).^2+2*(exy-exy0).*(eyx-eyx0)+(exz-exz0).^2+(ezx-ezx0).^2+2*(exz-exz0).*(ezx-ezx0)+(ezy-ezy0).^2+(eyz-eyz0).^2+2*(ezy-ezy0).*(eyz-eyz0));
 helas = helas*strain^2;
@@ -231,3 +229,4 @@ hwall = hwall*P0^2/l0^2;
 
 h = helec+helas+hbulk2+hbulk4+hbulk6+hbulk8+hwall;
 energy = sum(h)
+energy_ave = energy/len
