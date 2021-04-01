@@ -1,6 +1,6 @@
 Input file generator for Chad Landis Phase Field code (finite element method) (study ferroelectric polarization domain morphology):
 
-Inout file: 
+Input file: 
 1. dbcs:                 boundary condition of fundamental degree of freedom
                          dbcsgenerator.py
 
@@ -17,3 +17,9 @@ Inout file:
 
 4. nodes:                nodal index
                          nodesgen.py
+                         
+                        
+Data analysis:
+1. Energy:               Calculate thin film total free energy
+
+2. BTO phase scan:       Scan BTO phase (pointwise, planewise)
